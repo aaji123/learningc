@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+	int player, computer;
+	int playerScore, computerScore = 0;
+	char playAgain;
+
+	srand(time(NULL));
+
+	printf("~~ROCK PAPER SCISSORS~~\n");
+
+	do {
+		printf("Choose:\n");
+		printf("1. Rock\n");
+		printf("2. Paper\n");
+		printf("3. Scissors\n");
+		printf("Your choice: ");
+		scanf("%d", &player);
+
+		computer = rand() % 3 + 1;
+
+		printf("\nYou chose: ");
+		if (player == 1) printf("Rock\n");
+		else if (player == 2) printf("Paper\n");
+		else if (player == 3) printf("Scissors\n");
+
+		printf("Computer chose: ");
+		if (computer == 1) printf("Rock\n");
+		else if (computer == 2) printf("Paper\n");
+		else if (computer == 3) printf("Scissors\n");
+
+		if (player == computer) {
+			printf("It's a tie!\n");
+		} else if ((player == 1 && computer == 3) ||
+				(player == 2 && computer == 1) ||
+				(player == 3 && computer == 2)) {
+			printf("You win this round!\n");
+			playerScore++;
+		} else {
+			printf("Computer wins this round!\n");
+			computerScore++;
+		}
+
+		printf("\nScore - You: %d | Computer: %d\n\n", playerScore, computerScore);
+
+		printf("Play again? (y/n): ");
+		scanf(" %c", &playAgain);
+		printf("\n");
+	} while (playAgain == 'y' || playAgain == 'Y');
+
+	printf("Final Score - You: %d | Computer: %d\n", playerScore, computerScore);
+
+	if (playerScore > computerScore) {
+		printf("You won the game!\n");
+	} else if (computerScore > playerScore) {
+		printf("Computer won the game!\n");
+	} else {
+		printf("It's a tie!\n");
+	}
+	
+	return 0;
+}
